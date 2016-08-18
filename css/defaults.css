@@ -1,0 +1,12 @@
+body {
+  width: 300px;
+}
+#error {
+  color: red;
+}
+#results {
+  display: none;
+}
+#error {
+  display: none;
+}

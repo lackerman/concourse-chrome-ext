@@ -1,0 +1,10 @@
+[{
+  "name": "lib-jvm-stuff",
+  "status": "failed"
+}, {
+  "name": "api-tool-thing",
+  "status": "failed"
+}, {
+  "name": "app-project-name",
+  "status": "succeeded"
+}]

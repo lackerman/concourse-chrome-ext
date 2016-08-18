@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+
+  "name": "Concourse Pipeline Status Extension",
+  "description": "Polls the selected Concourse server to deliver failure notifications",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html",
+    "default_title": "Concourse: Select Pipelines for Notifications"
+  },
+  "permissions": [
+    "http://localhost:9080/*",
+    "storage"
+  ]
+}
