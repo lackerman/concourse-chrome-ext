@@ -1,12 +1,9 @@
-body {
-  width: 350px;
-}
-#error {
-  color: red;
-}
-#results {
+.popup #results {
   display: none;
 }
-#error {
+.options #results {
+  display: none;
+}
+.options #error {
   display: none;
 }

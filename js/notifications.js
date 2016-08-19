@@ -4,23 +4,21 @@
  *           Requires the id, title, message and url of the job to view
  */
 function launchNotification(notification) {
-  var notificationName = `${notification.title}_${notification.id}`;
-  var myNotificationId = null;
+  var notificationId = `${notification.title}_${notification.id}`;
   chrome.notifications.getPermissionLevel((level) => {
     if (level == "granted") {
-      chrome.notifications.create(notificationName, {
+      // Clear previous notifications
+      chrome.notifications.clear(notificationId, () => ({}));
+      chrome.notifications.create(notificationId, {
         type: 'basic',
         iconUrl: 'icons/notification_icon.png',
         title: notification.title,
         message: notification.message,
         contextMessage: 'Click notification to view failure'
-      }, (notificationId) => {
-        myNotificationId = notificationId;
-      });
+      }, (notificationId) => {});
       // Respond to the user's clicking on the notification
-      chrome.notifications.onClicked.addListener((notificationId) => {
-        console.log(notificationId, myNotificationId)
-        if (notificationId === myNotificationId) {
+      chrome.notifications.onClicked.addListener((id) => {
+        if (id === notificationId) {
           window.open(notification.url);
           chrome.notifications.clear(notificationId, () => ({}));
         }

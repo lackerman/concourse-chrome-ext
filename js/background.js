@@ -21,7 +21,7 @@ function processPipelines() {
   chrome.storage.local.get((data) => {
     // Only attempt to query if there is actually saved information
     if (data && data.url && data.pipelines) {
-      querySelectedPipelineJobs(data.url, data.pipelines);
+      querySelectedPipelineJobs(data.url, data.authorisation, data.pipelines);
     }
   });
 }

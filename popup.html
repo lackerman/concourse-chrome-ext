@@ -12,24 +12,16 @@
   <link rel="stylesheet" href="css/3rdparty/material.min.css">
   <link rel="stylesheet" href="css/defaults.css">
 
-  <script src="js/requester.js"></script>
+  <script src="js/ui.js"></script>
   <script src="js/popup.js"></script>
 </head>
 
 <body>
-  <div class="container">
-    <div id="query" class="row">
-      <input id="serverUrl" type="text" placeholder="Paste the URL of your Concourse server">
-      <button id="queryServer" class="waves-effect waves-light btn">Query Concourse Server</button>
-    </div>
-
+  <div class="container popup">
     <div id="results" class="row">
-      <h6>Pipelines to Monitor</h6>
+      <h5>Selected Pipelines</h5>
       <div id="pipelines"></div>
-      <button id="saveSelection" class="waves-effect waves-light btn">Save Selection</button>
     </div>
-    <div id="error" class="card-panel red lighten-1 white-text"></div>
-    <p></p>
   </div>
 </body>
 

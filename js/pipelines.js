@@ -4,10 +4,10 @@
  * .../api/v1/pipelines
  * .../api/v1/pipelines/<pipeline>/jobs
  */
-function querySelectedPipelineJobs(url, pipelines) {
+function querySelectedPipelineJobs(url, authorisation, pipelines) {
   pipelines.forEach(pipeline => {
     if (pipeline.selected) {
-      requestGet(`${url}/${pipeline.name}/jobs`, (statusCode, data) => {
+      requestGet(`${url}/${pipeline.name}/jobs`, authorisation, (statusCode, data) => {
         if (statusCode == 200) {
           sendNotification(url, pipeline, parseJobs(pipeline, data));
         } else {

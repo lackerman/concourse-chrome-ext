@@ -1,0 +1,47 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+
+<head>
+  <title>Pipeline Selector</title>
+
+  <link rel="stylesheet" href="css/3rdparty/material.min.css">
+  <link rel="stylesheet" href="css/defaults.css">
+
+  <script src="js/requester.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/options.js"></script>
+</head>
+
+<body>
+  <div class="container options">
+
+    <div id="query" class="row">
+      <input id="serverUrl" type="text" placeholder="Paste the URL of your Concourse server">
+      <h6>Authentication Credentials</h6>
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="Username" id="username" type="text" alt="Username (leave blank if none)">
+        </div>
+        <div class="input-field col s6">
+          <input placeholder="Password" id="password" type="password" alt="Password (leave blank if none)">
+        </div>
+      </div>
+      <button id="queryServer" class="waves-effect waves-light btn">Query Concourse Server</button>
+      <div id="error" class="card-panel red lighten-1 white-text"></div>
+    </div>
+
+    <div id="results" class="row">
+      <h6>Pipelines to Monitor</h6>
+      <div id="pipelines"></div>
+      <button id="saveSelection" class="waves-effect waves-light btn">Save Selection</button>
+    </div>
+    <p></p>
+  </div>
+</body>
+
+</html>

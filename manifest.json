@@ -14,10 +14,11 @@
     "48": "icons/icon_48.png",
     "128": "icons/icon_128.png"
   },
+  "options_page": "options.html",
   "browser_action": {
     "default_icon": "icons/icon_128.png",
     "default_popup": "popup.html",
-    "default_title": "Concourse: Select Pipelines for Notifications"
+    "default_title": "Concourse: Selected Pipelines"
   },
   "background": {
     "scripts": [
@@ -32,6 +33,7 @@
     "https://*/*",
     "http://*/*",
     "storage",
-    "notifications"
+    "notifications",
+    "tabs"
   ]
 }
