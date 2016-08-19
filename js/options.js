@@ -57,6 +57,7 @@ function saveSelection() {
   var toSave = {
     url: document.getElementById('serverUrl').value,
     authorisation: getAuthorisation(),
+    queryInterval: document.getElementById('queryInterval').value,
     pipelines: []
   };
 

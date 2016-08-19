@@ -1,9 +1,4 @@
 <!doctype html>
-<!--
- This page is shown when the extension button is clicked, because the
- "browser_action" field in manifest.json contains the "default_popup" key with
- value "popup.html".
- -->
 <html>
 
 <head>
@@ -19,9 +14,15 @@
 
 <body>
   <div class="container options">
-
-    <div id="query" class="row">
-      <input id="serverUrl" type="text" placeholder="Paste the URL of your Concourse server">
+    <div id="query">
+      <div class="row">
+        <div class="input-field col s8">
+          <input id="serverUrl" type="text" placeholder="Paste the URL of your Concourse server">
+        </div>
+        <div class="input-field col s4">
+          <input id="queryInterval" type="text" placeholder="Query Time intervals (seconds)">
+        </div>
+      </div>
       <h6>Authentication Credentials</h6>
       <div class="row">
         <div class="input-field col s6">
@@ -31,16 +32,27 @@
           <input placeholder="Password" id="password" type="password" alt="Password (leave blank if none)">
         </div>
       </div>
-      <button id="queryServer" class="waves-effect waves-light btn">Query Concourse Server</button>
-      <div id="error" class="card-panel red lighten-1 white-text"></div>
+      <div class="row">
+        <div class="col s6">
+          <button id="queryServer" class="btn waves-effect waves-light">Query Concourse Server</button>
+          <div id="error" class="card-panel red lighten-1 white-text"></div>
+        </div>
+      </div>
     </div>
 
-    <div id="results" class="row">
-      <h6>Pipelines to Monitor</h6>
-      <div id="pipelines"></div>
-      <button id="saveSelection" class="waves-effect waves-light btn">Save Selection</button>
+    <div class="divider"></div>
+
+    <div id="results">
+      <h4>Pipelines to Monitor</h4>
+      <div class="row">
+        <div id="pipelines" class="col s12"></div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <button id="saveSelection" class="waves-effect waves-light btn">Save Selection</button>
+        </div>
+      </div>
     </div>
-    <p></p>
   </div>
 </body>
 
