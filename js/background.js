@@ -1,4 +1,4 @@
-var QUERY_INTERVAL = 60000; // milliseconds
+var QUERY_INTERVAL = 5000; // milliseconds
 
 /**
  * Background page startup
