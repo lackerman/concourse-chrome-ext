@@ -1,0 +1,140 @@
+[{
+  "name": "update pipeline",
+  "url": "/pipelines/lib-js-node-common/jobs/update%20pipeline",
+  "next_build": null,
+  "finished_build": {
+    "id": 102,
+    "name": "1",
+    "status": "succeeded",
+    "job_name": "update pipeline",
+    "url": "/pipelines/lib-js-node-common/jobs/update%20pipeline/builds/1",
+    "api_url": "/api/v1/builds/102",
+    "pipeline_name": "lib-js-node-common",
+    "start_time": 1470902884,
+    "end_time": 1470902892
+  },
+  "inputs": [{
+    "name": "git.pipeline",
+    "resource": "git.pipeline",
+    "trigger": false
+  }, {
+    "name": "git.source",
+    "resource": "git.source",
+    "trigger": true
+  }],
+  "outputs": [{
+    "name": "concourse.pipeline",
+    "resource": "concourse.pipeline"
+  }],
+  "groups": []
+}, {
+  "name": "semver",
+  "url": "/pipelines/lib-js-node-common/jobs/semver",
+  "next_build": null,
+  "finished_build": {
+    "id": 103,
+    "name": "1",
+    "status": "succeeded",
+    "job_name": "semver",
+    "url": "/pipelines/lib-js-node-common/jobs/semver/builds/1",
+    "api_url": "/api/v1/builds/103",
+    "pipeline_name": "lib-js-node-common",
+    "start_time": 1470902894,
+    "end_time": 1470902901
+  },
+  "inputs": [{
+    "name": "git.pipeline",
+    "resource": "git.pipeline",
+    "passed": ["update pipeline"],
+    "trigger": false
+  }, {
+    "name": "git.source",
+    "resource": "git.source",
+    "passed": ["update pipeline"],
+    "trigger": true
+  }],
+  "outputs": [{
+    "name": "cache.version",
+    "resource": "cache.version"
+  }],
+  "groups": []
+}, {
+  "name": "install",
+  "url": "/pipelines/lib-js-node-common/jobs/install",
+  "next_build": null,
+  "finished_build": {
+    "id": 104,
+    "name": "1",
+    "status": "succeeded",
+    "job_name": "install",
+    "url": "/pipelines/lib-js-node-common/jobs/install/builds/1",
+    "api_url": "/api/v1/builds/104",
+    "pipeline_name": "lib-js-node-common",
+    "start_time": 1470902894,
+    "end_time": 1470902964
+  },
+  "inputs": [{
+    "name": "git.source",
+    "resource": "git.source",
+    "passed": ["update pipeline"],
+    "trigger": true
+  }, {
+    "name": "git.pipeline",
+    "resource": "git.pipeline",
+    "passed": ["update pipeline"],
+    "trigger": false
+  }, {
+    "name": "cache.node_modules.in",
+    "resource": "cache.node_modules",
+    "trigger": false
+  }],
+  "outputs": [{
+    "name": "cache.node_modules",
+    "resource": "cache.node_modules"
+  }],
+  "groups": []
+}, {
+  "name": "test and publish",
+  "url": "/pipelines/lib-js-node-common/jobs/test%20and%20publish",
+  "next_build": null,
+  "finished_build": {
+    "id": 105,
+    "name": "1",
+    "status": "succeeded",
+    "job_name": "test and publish",
+    "url": "/pipelines/lib-js-node-common/jobs/test%20and%20publish/builds/1",
+    "api_url": "/api/v1/builds/105",
+    "pipeline_name": "lib-js-node-common",
+    "start_time": 1470902975,
+    "end_time": 1470903038
+  },
+  "inputs": [{
+    "name": "git.source",
+    "resource": "git.source",
+    "passed": ["install", "semver"],
+    "trigger": false
+  }, {
+    "name": "git.pipeline",
+    "resource": "git.pipeline",
+    "passed": ["install"],
+    "trigger": false
+  }, {
+    "name": "cache.node_modules.in",
+    "resource": "cache.node_modules",
+    "passed": ["install"],
+    "trigger": true
+  }, {
+    "name": "cache.version",
+    "resource": "cache.version",
+    "passed": ["semver"],
+    "trigger": false
+  }],
+  "outputs": [{
+    "name": "npm.package",
+    "resource": "npm.package"
+  }, {
+    "name": "git.source",
+    "resource": "git.source"
+  }],
+  "groups": []
+}]

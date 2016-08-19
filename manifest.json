@@ -29,11 +29,9 @@
     "persistent": false
   },
   "permissions": [
-    "https://concourse.dev.gray.net/api/v1/*",
-    "https://concourse-dashboard.dev.gray.net/*",
-    "http://localhost:9080/*",
+    "https://*/*",
+    "http://*/*",
     "storage",
-    "alarms",
     "notifications"
   ]
 }
