@@ -21,7 +21,7 @@ Running the Mock API
 ### Testing that it works
 
 1. Right click on the **Concourse: Selected Pipelines** icon in Chrome, and select **Options**
-2. Enter http://localhost:8080/api/v1/pipelines into the the first textbox which reads **Paste the URL of your Concourse server**
+2. Enter `http://localhost:8080/api/v1/pipelines` into the the first textbox which reads **Paste the URL of your Concourse server**
 3. Click **Query Concourse Server**
 4. Select the pipelines you want to monitor (for demo purposes select at least the **broken-pipeline**)
 5. Click **Save Selection**
