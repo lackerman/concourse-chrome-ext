@@ -8,20 +8,23 @@
 
 <head>
   <title>Concourse: Select Pipelines for Notifications</title>
-  <link rel="stylesheet" href="css/material.min.css">
+
+  <link rel="stylesheet" href="css/3rdparty/material.min.css">
   <link rel="stylesheet" href="css/defaults.css">
-  <script src="js/material.min.js"></script>
+
+  <script src="js/requester.js"></script>
   <script src="js/popup.js"></script>
 </head>
 
 <body>
   <div class="container">
-    <div>
+    <div id="query" class="row">
       <input id="serverUrl" type="text" placeholder="Paste the URL of your Concourse server">
       <button id="queryServer" class="waves-effect waves-light btn">Query Concourse Server</button>
     </div>
-    <div id="results">
-      <p>Pipelines to Monitor</p>
+
+    <div id="results" class="row">
+      <h6>Pipelines to Monitor</h6>
       <div id="pipelines"></div>
       <button id="saveSelection" class="waves-effect waves-light btn">Save Selection</button>
     </div>

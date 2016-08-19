@@ -1,41 +1,40 @@
-document.addEventListener('DOMContentLoaded', function () {
-  chrome.storage.local.get(function (data) {
-    if (data && data.url && data.selection) {
+var request = requestGet; // requester.js file
+
+/*
+ * Lifecycle event: When the popup page is loaded
+ */
+document.addEventListener('DOMContentLoaded', function() {
+  chrome.storage.local.get(function(data) {
+    if (data && data.url && data.pipelines) {
       document.getElementById('serverUrl').value = data.url;
-      buildPipelineSelectors(data.selection);
+      buildPipelineSelectors(data.pipelines);
       document.getElementById('results').style.display = 'block';
     }
   });
 
+  // Add event for when the user clicks the 'Query Server' button
   document
     .getElementById('queryServer')
-    .addEventListener('click', function () {
+    .addEventListener('click', function() {
       clearError();
-      var url = document.getElementById('serverUrl').value; // http://localhost:9080/data.json
-      processConcourseUrl(url);
+      var url = document.getElementById('serverUrl').value;
+      request(url, contentHandler);
     });
 
+  // Add event for when the user saves their pipeline selection
   document
     .getElementById('saveSelection')
-    .addEventListener('click', function () {
+    .addEventListener('click', function() {
       saveSelection();
     });
 });
 
-function processConcourseUrl(url) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', url);
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-      contentHandler(xhr.status, xhr.responseText);
-    }
-  };
-  xhr.send();
-}
-
 function contentHandler(statusCode, data) {
   if (statusCode === 200) {
     var pipelines = JSON.parse(data);
+    pipelines.sort(function(a, b) {
+      return a.name.localeCompare(b.name);
+    });
     buildPipelineSelectors(pipelines);
     document.getElementById('results').style.display = 'block';
   } else {
@@ -47,17 +46,17 @@ function saveSelection() {
   var inputs = document.getElementsByTagName('input');
   var toSave = {
     url: document.getElementById('serverUrl').value,
-    selection: []
+    pipelines: []
   };
   for (var i = 0; i < inputs.length; i++) {
     if (inputs[i].type == 'checkbox') {
-      toSave.selection.push({ name: inputs[i].value, checked: inputs[i].checked });
+      toSave.pipelines.push({
+        name: inputs[i].value,
+        selected: inputs[i].checked
+      });
     }
   }
-  chrome.storage.local.set(toSave, function () {
-    console.log('Saved Pipeline Selection');
-    console.log(toSave);
-  });
+  chrome.storage.local.set(toSave, function() {});
 }
 
 function buildPipelineSelectors(pipelines) {
@@ -84,7 +83,7 @@ function createCheckbox(container, pipeline) {
   checkbox.value = pipeline.name;
   checkbox.id = pipeline.name;
   checkbox.className = 'filled-in';
-  checkbox.checked = pipeline.checked;
+  checkbox.checked = (pipeline.checked || pipeline.selected);
 
   var label = document.createElement('label')
   label.htmlFor = pipeline.name;

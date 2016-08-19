@@ -1,17 +1,39 @@
 {
   "manifest_version": 2,
+  "minimum_chrome_version": "52",
+
+  "version": "1.0",
+  "author": "Leo Ackerman",
 
   "name": "Concourse Pipeline Status Extension",
   "description": "Polls the selected Concourse server to deliver failure notifications",
-  "version": "1.0",
+  "homepage_url": "https://github.com/lackerman/concourse-chrome-ext",
 
+  "icons": {
+    "16": "icons/icon_16.png",
+    "48": "icons/icon_48.png",
+    "128": "icons/icon_128.png"
+  },
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": "icons/icon_128.png",
     "default_popup": "popup.html",
     "default_title": "Concourse: Select Pipelines for Notifications"
   },
+  "background": {
+    "scripts": [
+      "js/requester.js",
+      "js/notifications.js",
+      "js/pipelines.js",
+      "js/background.js"
+    ],
+    "persistent": false
+  },
   "permissions": [
+    "https://concourse.dev.gray.net/api/v1/*",
+    "https://concourse-dashboard.dev.gray.net/*",
     "http://localhost:9080/*",
-    "storage"
+    "storage",
+    "alarms",
+    "notifications"
   ]
 }
