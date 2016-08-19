@@ -1,0 +1,113 @@
+[{
+  "name": "update",
+  "url": "/pipelines/broken-pipeline/jobs/update",
+  "next_build": null,
+  "finished_build": {
+    "id": 1,
+    "name": "1",
+    "status": "succeeded",
+    "job_name": "update",
+    "url": "/pipelines/broken-pipeline/jobs/update/builds/1",
+    "api_url": "/api/v1/builds/1",
+    "pipeline_name": "broken-pipeline",
+    "start_time": 1470902884,
+    "end_time": 1470902892
+  },
+  "inputs": [{
+    "name": "git.source",
+    "resource": "git.source",
+    "trigger": true
+  }],
+  "outputs": [{
+    "name": "concourse.pipeline",
+    "resource": "concourse.pipeline"
+  }]
+}, {
+  "name": "semver",
+  "url": "/pipelines/broken-pipeline/jobs/semver",
+  "next_build": null,
+  "finished_build": {
+    "id": 2,
+    "name": "1",
+    "status": "succeeded",
+    "job_name": "semver",
+    "url": "/pipelines/broken-pipeline/jobs/semver/builds/1",
+    "api_url": "/api/v1/builds/2",
+    "pipeline_name": "broken-pipeline",
+    "start_time": 1470902894,
+    "end_time": 1470902901
+  },
+  "inputs": [{
+    "name": "git.source",
+    "resource": "git.source",
+    "passed": ["update"],
+    "trigger": true
+  }],
+  "outputs": [{
+    "name": "cache.version",
+    "resource": "cache.version"
+  }]
+}, {
+  "name": "install",
+  "url": "/pipelines/broken-pipeline/jobs/install",
+  "next_build": null,
+  "finished_build": {
+    "id": 3,
+    "name": "1",
+    "status": "succeeded",
+    "job_name": "install",
+    "url": "/pipelines/broken-pipeline/jobs/install/builds/1",
+    "api_url": "/api/v1/builds/3",
+    "pipeline_name": "broken-pipeline",
+    "start_time": 1470902894,
+    "end_time": 1470902964
+  },
+  "inputs": [{
+    "name": "git.source",
+    "resource": "git.source",
+    "passed": ["update"],
+    "trigger": true
+  }],
+  "outputs": [{
+    "name": "cache.node_modules",
+    "resource": "cache.node_modules"
+  }]
+}, {
+  "name": "test",
+  "url": "/pipelines/broken-pipeline/jobs/test",
+  "next_build": null,
+  "finished_build": {
+    "id": 3,
+    "name": "1",
+    "status": "failed",
+    "job_name": "test",
+    "url": "/pipelines/broken-pipeline/jobs/test/builds/3",
+    "api_url": "/api/v1/builds/3",
+    "pipeline_name": "broken-pipeline",
+    "start_time": 1470902975,
+    "end_time": 1470903038
+  },
+  "inputs": [{
+    "name": "git.source",
+    "resource": "git.source",
+    "passed": ["install", "semver"],
+    "trigger": false
+  }, {
+    "name": "cache.node_modules.in",
+    "resource": "cache.node_modules",
+    "passed": ["install"],
+    "trigger": true
+  }, {
+    "name": "cache.version",
+    "resource": "cache.version",
+    "passed": ["semver"],
+    "trigger": false
+  }],
+  "outputs": [{
+    "name": "npm.package",
+    "resource": "npm.package"
+  }, {
+    "name": "git.source",
+    "resource": "git.source"
+  }]
+}]

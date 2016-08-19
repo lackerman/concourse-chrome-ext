@@ -1,0 +1,13 @@
+[{
+  "name": "working-pipeline",
+  "url": "/pipelines/working-pipeline",
+  "paused": false
+}, {
+  "name": "paused-pipeline",
+  "url": "/pipelines/paused-pipeline",
+  "paused": true
+}, {
+  "name": "broken-pipeline",
+  "url": "/pipelines/broken-pipeline",
+  "paused": false
+}]

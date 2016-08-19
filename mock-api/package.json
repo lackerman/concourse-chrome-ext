@@ -1,0 +1,14 @@
+{
+  "name": "mock-concourse-api",
+  "version": "1.0.0",
+  "description": "A mock Concourse API",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Leo Ackerman",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}

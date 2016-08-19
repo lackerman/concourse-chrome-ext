@@ -1,23 +1,19 @@
 [{
-  "name": "update pipeline",
-  "url": "/pipelines/lib-js-node-common/jobs/update%20pipeline",
+  "name": "update",
+  "url": "/pipelines/working-pipeline/jobs/update",
   "next_build": null,
   "finished_build": {
-    "id": 102,
+    "id": 1,
     "name": "1",
     "status": "succeeded",
-    "job_name": "update pipeline",
-    "url": "/pipelines/lib-js-node-common/jobs/update%20pipeline/builds/1",
-    "api_url": "/api/v1/builds/102",
-    "pipeline_name": "lib-js-node-common",
+    "job_name": "update",
+    "url": "/pipelines/working-pipeline/jobs/update/builds/1",
+    "api_url": "/api/v1/builds/1",
+    "pipeline_name": "working-pipeline",
     "start_time": 1470902884,
     "end_time": 1470902892
   },
   "inputs": [{
-    "name": "git.pipeline",
-    "resource": "git.pipeline",
-    "trigger": false
-  }, {
     "name": "git.source",
     "resource": "git.source",
     "trigger": true
@@ -25,86 +21,69 @@
   "outputs": [{
     "name": "concourse.pipeline",
     "resource": "concourse.pipeline"
-  }],
-  "groups": []
+  }]
 }, {
   "name": "semver",
-  "url": "/pipelines/lib-js-node-common/jobs/semver",
+  "url": "/pipelines/working-pipeline/jobs/semver",
   "next_build": null,
   "finished_build": {
-    "id": 103,
+    "id": 2,
     "name": "1",
     "status": "succeeded",
     "job_name": "semver",
-    "url": "/pipelines/lib-js-node-common/jobs/semver/builds/1",
-    "api_url": "/api/v1/builds/103",
-    "pipeline_name": "lib-js-node-common",
+    "url": "/pipelines/working-pipeline/jobs/semver/builds/1",
+    "api_url": "/api/v1/builds/2",
+    "pipeline_name": "working-pipeline",
     "start_time": 1470902894,
     "end_time": 1470902901
   },
   "inputs": [{
-    "name": "git.pipeline",
-    "resource": "git.pipeline",
-    "passed": ["update pipeline"],
-    "trigger": false
-  }, {
     "name": "git.source",
     "resource": "git.source",
-    "passed": ["update pipeline"],
+    "passed": ["update"],
     "trigger": true
   }],
   "outputs": [{
     "name": "cache.version",
     "resource": "cache.version"
-  }],
-  "groups": []
+  }]
 }, {
   "name": "install",
-  "url": "/pipelines/lib-js-node-common/jobs/install",
+  "url": "/pipelines/working-pipeline/jobs/install",
   "next_build": null,
   "finished_build": {
-    "id": 104,
+    "id": 3,
     "name": "1",
     "status": "succeeded",
     "job_name": "install",
-    "url": "/pipelines/lib-js-node-common/jobs/install/builds/1",
-    "api_url": "/api/v1/builds/104",
-    "pipeline_name": "lib-js-node-common",
+    "url": "/pipelines/working-pipeline/jobs/install/builds/1",
+    "api_url": "/api/v1/builds/3",
+    "pipeline_name": "working-pipeline",
     "start_time": 1470902894,
     "end_time": 1470902964
   },
   "inputs": [{
     "name": "git.source",
     "resource": "git.source",
-    "passed": ["update pipeline"],
+    "passed": ["update"],
     "trigger": true
-  }, {
-    "name": "git.pipeline",
-    "resource": "git.pipeline",
-    "passed": ["update pipeline"],
-    "trigger": false
-  }, {
-    "name": "cache.node_modules.in",
-    "resource": "cache.node_modules",
-    "trigger": false
   }],
   "outputs": [{
     "name": "cache.node_modules",
     "resource": "cache.node_modules"
-  }],
-  "groups": []
+  }]
 }, {
-  "name": "test and publish",
-  "url": "/pipelines/lib-js-node-common/jobs/test%20and%20publish",
+  "name": "test",
+  "url": "/pipelines/working-pipeline/jobs/test",
   "next_build": null,
   "finished_build": {
-    "id": 105,
+    "id": 3,
     "name": "1",
     "status": "succeeded",
-    "job_name": "test and publish",
-    "url": "/pipelines/lib-js-node-common/jobs/test%20and%20publish/builds/1",
-    "api_url": "/api/v1/builds/105",
-    "pipeline_name": "lib-js-node-common",
+    "job_name": "test",
+    "url": "/pipelines/working-pipeline/jobs/test/builds/3",
+    "api_url": "/api/v1/builds/3",
+    "pipeline_name": "working-pipeline",
     "start_time": 1470902975,
     "end_time": 1470903038
   },
@@ -112,11 +91,6 @@
     "name": "git.source",
     "resource": "git.source",
     "passed": ["install", "semver"],
-    "trigger": false
-  }, {
-    "name": "git.pipeline",
-    "resource": "git.pipeline",
-    "passed": ["install"],
     "trigger": false
   }, {
     "name": "cache.node_modules.in",
@@ -135,6 +109,5 @@
   }, {
     "name": "git.source",
     "resource": "git.source"
-  }],
-  "groups": []
+  }]
 }]
