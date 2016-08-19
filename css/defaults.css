@@ -1,3 +1,6 @@
+.popup {
+  width: 250px;
+}
 .popup #results {
   display: none;
 }
