@@ -1,19 +1,38 @@
-function createPipelineSelector(pipeline) {
-  var container = document.createElement('p');
-  createCheckbox(container, pipeline);
+function createEmptyPopup() {
+  const heading = document.getElementById('heading');
+  heading.innerText = 'No Pipelines';
+  const pipelines = document.getElementById('pipelines');
+  pipelines.innerHTML = 'No pipelines configured. Go to the <a target="_blank" href="options.html">Options</a> page to select your pipelines.';
+}
+
+function buildPipelineSelectors(pipelines, disabled) {
+  const container = document.getElementById('pipelines');
+  // First clear out previous nodes
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+  pipelines.forEach(p => {
+    container.appendChild(createPipelineSelector(p, disabled))
+  });
+}
+
+function createPipelineSelector(pipeline, disabled) {
+  const container = document.createElement('p');
+  createCheckbox(container, pipeline, disabled);
   return container;
 }
 
-function createCheckbox(container, pipeline) {
-  var checkbox = document.createElement('input');
+function createCheckbox(container, pipeline, disabled) {
+  const checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
   checkbox.name = pipeline.name;
   checkbox.value = pipeline.name;
   checkbox.id = pipeline.name;
   checkbox.className = 'filled-in';
   checkbox.checked = (pipeline.checked || pipeline.selected);
+  if (disabled) checkbox.disabled = 'disabled';
 
-  var label = document.createElement('label')
+  const label = document.createElement('label')
   label.htmlFor = pipeline.name;
   label.appendChild(document.createTextNode(pipeline.name));
 
@@ -22,13 +41,13 @@ function createCheckbox(container, pipeline) {
 }
 
 function displayError(errorMessage) {
-  var errorBox = document.getElementById('error');
+  const errorBox = document.getElementById('error');
   errorBox.style.display = 'block';
   errorBox.innerHTML = errorMessage || 'There was a problem with the request.';
 }
 
 function clearError() {
-  var errorBox = document.getElementById('error');
+  const errorBox = document.getElementById('error');
   errorBox.style.display = 'none';
   errorBox.innerHTML = '';
 }

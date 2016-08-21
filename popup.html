@@ -1,9 +1,4 @@
 <!doctype html>
-<!--
- This page is shown when the extension button is clicked, because the
- "browser_action" field in manifest.json contains the "default_popup" key with
- value "popup.html".
- -->
 <html>
 
 <head>
@@ -21,8 +16,8 @@
     <div class="row">
       <div class="col s1"></div>
       <div id="results" class="col s10">
-        <h5>Selected Pipelines</h5>
-        <div id="pipelines"></div>
+        <h5 id="heading"></h5>
+        <div id="pipelines"> </div>
       </div>
       <div class="col s1"></div>
     </div>

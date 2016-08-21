@@ -20,7 +20,7 @@ const DEFAULT_QUERY_INTERVAL = 30000; // milliseconds
   // Reset the timer when the user clicks save
   chrome.storage.onChanged.addListener((changes, namespace) => {
     for (key in changes) {
-      if (key === 'queryInterval') {
+      if (key === 'queryInterval' && changes[key].newValue) {
         resetTimer(+changes[key].newValue * 1000);
       }
     }

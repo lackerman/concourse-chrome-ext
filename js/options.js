@@ -1,13 +1,12 @@
-var request = requestGet; // requester.js file
-
 /*
  * Lifecycle event: When the popup page is loaded
  */
-document.addEventListener('DOMContentLoaded', function() {
-  chrome.storage.local.get(function(data) {
+document.addEventListener('DOMContentLoaded', () => {
+  chrome.storage.local.get((data) => {
     if (data && data.url && data.pipelines) {
+      // Populate the Options fields from local storage
       document.getElementById('serverUrl').value = data.url;
-      buildPipelineSelectors(data.pipelines);
+      buildPipelineSelectors(data.pipelines, false);
       document.getElementById('results').style.display = 'block';
     }
   });
@@ -15,71 +14,52 @@ document.addEventListener('DOMContentLoaded', function() {
   // Add event for when the user clicks the 'Query Server' button
   document
     .getElementById('queryServer')
-    .addEventListener('click', function() {
+    .addEventListener('click', () => {
       clearError();
-      var url = document.getElementById('serverUrl').value;
-      request(url, getAuthorisation(), contentHandler);
+      const url = document.getElementById('serverUrl').value;
+      requestGet(url, getAuthorisation(), contentHandler);
     });
 
   // Add event for when the user saves their pipeline selection
   document
     .getElementById('saveSelection')
-    .addEventListener('click', function() {
-      saveSelection();
-    });
+    .addEventListener('click', saveSelection);
 });
 
 function contentHandler(statusCode, data) {
   if (statusCode === 200) {
-    var pipelines = JSON.parse(data);
-    pipelines.sort(function(a, b) {
-      return a.name.localeCompare(b.name);
-    });
-    buildPipelineSelectors(pipelines);
+    const pipelines = JSON.parse(data);
+    pipelines.sort((a, b) => a.name.localeCompare(b.name));
+    buildPipelineSelectors(pipelines, false);
     document.getElementById('results').style.display = 'block';
   } else {
-    displayError('[Status Code: ' + statusCode + '] Failed to retrieve data for specified endpoint. ' + data);
+    displayError(`[Status Code: ${statusCode}] Failed to retrieve data for specified endpoint. ${data}`);
   }
 }
 
-function buildPipelineSelectors(pipelines) {
-  var container = document.getElementById('pipelines');
-  // First clear out previous nodes
-  while (container.firstChild) {
-    container.removeChild(container.firstChild);
+function getSelectedPipelines() {
+  const pipelines = [];
+  const inputs = document.getElementsByTagName('input');
+  for (let i = 0; i < inputs.length; i++) {
+    const input = inputs[i];
+    if (input.type == 'checkbox') {
+      pipelines.push({ name: input.value, selected: input.checked });
+    }
   }
-  for (var i = 0; i < pipelines.length; i++) {
-    container.appendChild(createPipelineSelector(pipelines[i]));
-  }
+  return pipelines;
 }
 
 function saveSelection() {
-  var toSave = {
+  chrome.storage.local.set({
     url: document.getElementById('serverUrl').value,
     authorisation: getAuthorisation(),
     queryInterval: document.getElementById('queryInterval').value,
-    pipelines: []
-  };
-
-  var inputs = document.getElementsByTagName('input');
-  for (var i = 0; i < inputs.length; i++) {
-    if (inputs[i].type == 'checkbox') {
-      toSave.pipelines.push({
-        name: inputs[i].value,
-        selected: inputs[i].checked
-      });
-    }
-  }
-
-  chrome.storage.local.set(toSave, function() {});
+    pipelines: getSelectedPipelines()
+  }, () => {});
 }
 
 function getAuthorisation() {
-  var username = document.getElementById('username').value;
-  var password = document.getElementById('password').value;
-  var authorisation = undefined;
-  if (username || password) {
-    authorisation = 'Basic ' + btoa(`${username}:${password}`);
-  }
-  return authorisation;
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  return (username || password) ? `Basic ${btoa(`${username}:${password}`)}` : undefined;
 }
