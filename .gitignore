@@ -4,3 +4,6 @@
 # NPM/Node files
 node_modules/
 npm-debug.log
+
+# Signing keys
+bin/*.pem
