@@ -1,9 +1,8 @@
-.popup {
-  width: 250px;
+body {
+  background-color: #263238;
 }
-.options #results {
-  display: none;
-}
-.options #error {
-  display: none;
+.background {
+  background-color: #37474f;
+  margin-top: 1em;
+  padding: 2em;
 }

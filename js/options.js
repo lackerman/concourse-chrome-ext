@@ -1,5 +1,5 @@
 /*
- * Lifecycle event: When the popup page is loaded
+ * Lifecycle event: When the options page is loaded
  */
 document.addEventListener('DOMContentLoaded', () => {
   chrome.storage.local.get((data) => {

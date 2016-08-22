@@ -1,0 +1,75 @@
+.dashboard .section {
+  margin-bottom: 1em;
+}
+.dashboard .row {
+  margin-bottom: 0;
+  padding-top: 0.5rem;
+}
+.dashboard .card .card-content .card-title {
+  line-height: 24px;
+  font-weight: 600;
+}
+.dashboard .succeeded {
+  background-color: #2e7d32;
+}
+.dashboard .aborted {
+  background-color: #5d4037;
+}
+.dashboard .errored {
+  background-color: #ef6c00;
+}
+.dashboard .failed {
+  background-color: #d32f2f;
+}
+.dashboard .paused {
+  background-color: #0288d1;
+}
+.dashboard .never-built {
+  background-color: #757575;
+}
+.dashboard .pending {
+  animation: small-started-ripple 1s linear infinite;
+  animation-name: small-started-ripple;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-delay: initial;
+  animation-iteration-count: infinite;
+  animation-direction: initial;
+  animation-fill-mode: initial;
+  animation-play-state: initial;
+  border-radius: 1px;
+}
+@keyframes small-pending-ripple {
+  0% {
+    box-shadow: 0 0 0 -3px #263238, 0 0 0 0 #bdbdbd, 0 0 0 3px #263238, 0 0 0 6px #bdbdbd;
+  }
+  50% {
+    box-shadow: 0 0 0 0 #263238, 0 0 0 3px #bdbdbd, 0 0 0 6px #263238, 0 0 0 9px rgba(#bdbdbd, .5);
+  }
+  100% {
+    box-shadow: 0 0 0 3px #263238, 0 0 0 6px #bdbdbd, 0 0 0 9px #263238, 0 0 0 12px transparent;
+  }
+}
+.dashboard .started {
+  animation: small-started-ripple 1s linear infinite;
+  animation-name: small-started-ripple;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-delay: initial;
+  animation-iteration-count: infinite;
+  animation-direction: initial;
+  animation-fill-mode: initial;
+  animation-play-state: initial;
+  border-radius: 1px;
+}
+@keyframes small-started-ripple {
+  0% {
+    box-shadow: 0 0 0 -3px #263238, 0 0 0 0 #ffca28, 0 0 0 3px #263238, 0 0 0 6px #ffca28;
+  }
+  50% {
+    box-shadow: 0 0 0 0 #263238, 0 0 0 3px #ffca28, 0 0 0 6px #263238, 0 0 0 9px rgba(255, 202, 40, .5);
+  }
+  100% {
+    box-shadow: 0 0 0 3px #263238, 0 0 0 6px #ffca28, 0 0 0 9px #263238, 0 0 0 12px transparent;
+  }
+}
