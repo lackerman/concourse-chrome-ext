@@ -11,7 +11,7 @@ Once downloaded, drag and drop the `concourse-chrome-ext.crx` extension file int
 ## Local Development
 
 1. Start by cloning the repository.
-2. Go to https://developer.chrome.com/extensions/getstarted#unpacked and follow the steps to load an *unpacked* extension.
+2. Go to the [Chrome Extensions Getting Started Guide](https://developer.chrome.com/extensions/getstarted#unpacked) and follow the steps to load an *unpacked* extension.
 3. Test that it works by specifying your Concourse API url or by using the Mock API
   - See the [README](mock-api/README.md) in the `mock-api` directory.
 
