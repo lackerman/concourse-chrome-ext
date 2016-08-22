@@ -4,9 +4,9 @@ A little project for us to track the status of our pipelines.
 
 ## Installing
 
-Click [here](https://github.com/lackerman/concourse-chrome-ext/raw/master/bin/concourse-chrome-ext.crx) to download the extension file.
-
-Once downloaded, drag and drop the `concourse-chrome-ext.crx` extension file into Chrome to install.
+1. Click [here](https://github.com/lackerman/concourse-chrome-ext/raw/master/bin/concourse-chrome-ext.crx) to download the extension file.
+2. Open the **extensions** tab by typing `chrome://extensions` into the Chrome search bar
+3. Drag and drop the `concourse-chrome-ext.crx` extension file onto the **extensions** tab
 
 ## Local Development
 
