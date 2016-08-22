@@ -9,69 +9,15 @@
   <link rel="stylesheet" href="css/dashboard.css">
 
   <script src="js/ui.js"></script>
+  <script src="js/requester.js"></script>
+  <script src="js/pipelines.js"></script>
+  <script src="js/dashboard.js"></script>
 </head>
 
 <body>
   <div class="dashboard">
     <div class="section blue-grey darken-3">
-      <div class="row">
-        <a class="col s3" href="https://concourse-url/pipelines/pipeline">
-          <div class="card succeeded">
-            <div class="card-content white-text">
-              <span class="card-title">pipeline</span>
-            </div>
-          </div>
-        </a>
-        <a class="col s3" href="https://concourse-url/pipelines/pipeline">
-          <div class="card aborted">
-            <div class="card-content white-text">
-              <span class="card-title">pipeline</span>
-            </div>
-          </div>
-        </a>
-        <a class="col s3" href="https://concourse-url/pipelines/pipeline">
-          <div class="card errored">
-            <div class="card-content white-text">
-              <span class="card-title">pipeline</span>
-            </div>
-          </div>
-        </a>
-        <a class="col s3" href="https://concourse-url/pipelines/pipeline">
-          <div class="card failed">
-            <div class="card-content white-text">
-              <span class="card-title">pipeline</span>
-            </div>
-          </div>
-        </a>
-        <a class="col s3" href="https://concourse-url/pipelines/pipeline">
-          <div class="card paused">
-            <div class="card-content white-text">
-              <span class="card-title">pipeline</span>
-            </div>
-          </div>
-        </a>
-        <a class="col s3" href="https://concourse-url/pipelines/pipeline">
-          <div class="card never-built">
-            <div class="card-content white-text">
-              <span class="card-title">pipeline</span>
-            </div>
-          </div>
-        </a>
-        <a class="col s3" href="https://concourse-url/pipelines/pipeline">
-          <div class="card succeeded pending">
-            <div class="card-content white-text">
-              <span class="card-title">pipeline</span>
-            </div>
-          </div>
-        </a>
-        <a class="col s3" href="https://concourse-url/pipelines/pipeline">
-          <div class="card succeeded started">
-            <div class="card-content white-text">
-              <span class="card-title">pipeline</span>
-            </div>
-          </div>
-        </a>
-      </div>
+      <div id="pipelines" class="row"></div>
     </div>
   </div>
 </body>
