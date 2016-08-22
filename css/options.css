@@ -1,0 +1,23 @@
+::-webkit-input-placeholder {
+  color: #888;
+}
+.options #results {
+  display: none;
+}
+.options #error {
+  display: none;
+}
+.options .row {
+  margin-bottom: 0;
+}
+.options #pipelines {
+  padding-top: 2em;
+}
+.options .title {
+  font-size: 20px;
+}
+.options .pipeline {
+  width: 33%;
+  padding-top: 0.5em;
+  display: inline-block;
+}

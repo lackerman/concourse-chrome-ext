@@ -6,6 +6,7 @@
 
   <link rel="stylesheet" href="css/3rdparty/material.min.css">
   <link rel="stylesheet" href="css/defaults.css">
+  <link rel="stylesheet" href="css/options.css">
 
   <script src="js/requester.js"></script>
   <script src="js/ui.js"></script>
@@ -13,46 +14,47 @@
 </head>
 
 <body>
-  <div class="container options">
-    <div id="query">
+  <div class="container options white-text">
+    <div id="query" class="background">
+      <div class=title>Setup Concourse API</div>
       <div class="row">
-        <div class="input-field col s8">
+        <div class="col s9">
           <input id="serverUrl" type="text" placeholder="Paste the URL of your Concourse server">
         </div>
-        <div class="input-field col s4">
+        <div class="col s3">
           <input id="queryInterval" type="text" placeholder="Query Time intervals (seconds)">
         </div>
       </div>
       <h6>Authentication Credentials</h6>
       <div class="row">
-        <div class="input-field col s6">
+        <div class="col s6">
           <input placeholder="Username" id="username" type="text" alt="Username (leave blank if none)">
         </div>
-        <div class="input-field col s6">
+        <div class="col s6">
           <input placeholder="Password" id="password" type="password" alt="Password (leave blank if none)">
         </div>
       </div>
       <div class="row">
-        <div class="col s6">
+        <div class="col s12">
           <button id="queryServer" class="btn waves-effect waves-light">Query Concourse Server</button>
           <div id="error" class="card-panel red lighten-1 white-text"></div>
         </div>
       </div>
     </div>
-
-    <div class="divider"></div>
-
-    <div id="results">
-      <h4>Pipelines to Monitor</h4>
+    <div id="results" class="background">
       <div class="row">
-        <div id="pipelines" class="col s12"></div>
-      </div>
-      <div class="row">
-        <div class="col s12">
+        <div class="col s6">
+          <div class="title">Pipelines to Monitor</div>
+        </div>
+        <div class="col s6 right-align">
           <button id="saveSelection" class="waves-effect waves-light btn">Save Selection</button>
         </div>
       </div>
+      <div class="row">
+        <div id="pipelines" class="col s12"></div>
+      </div>
     </div>
+    <p></p>
   </div>
 </body>
 

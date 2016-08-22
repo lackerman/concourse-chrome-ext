@@ -17,7 +17,8 @@ function buildPipelineSelectors(pipelines, disabled) {
 }
 
 function createPipelineSelector(pipeline, disabled) {
-  const container = document.createElement('p');
+  const container = document.createElement('div');
+  container.className = 'pipeline';
   createCheckbox(container, pipeline, disabled);
   return container;
 }
