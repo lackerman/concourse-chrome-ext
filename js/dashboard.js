@@ -25,20 +25,20 @@ function buildPipelineStatuses(url, authorisation, pipelines) {
     });
 }
 
-function createPipelineCard({ url, name, status }) {
+function createPipelineCard(pipelineJob) {
   const anchor = document.createElement('a');
   anchor.className = 'col s3';
-  anchor.href = url;
+  anchor.href = pipelineJob.url;
 
   const card = document.createElement('div');
-  card.className = `card ${status}`;
+  card.className = `card ${pipelineJob.status} ${pipelineJob.activeStatus}`;
 
   const content = document.createElement('div');
   content.className = 'card-content white-text';
 
   const span = document.createElement('span');
   span.className = 'card-title';
-  span.innerText = name;
+  span.innerText = pipelineJob.name;
 
   content.appendChild(span);
   card.appendChild(content);

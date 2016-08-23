@@ -32,7 +32,17 @@ function processPipelines() {
   chrome.storage.local.get((data) => {
     // Only attempt to query if there is actually saved information
     if (data && data.url && data.pipelines) {
-      querySelectedPipelineJobs(data.url, data.authorisation, data.pipelines);
+      querySelectedPipelineJobs(data.url, data.authorisation, data.pipelines, sendNotification);
     }
   });
+}
+
+function sendNotification(pipelineJob) {
+  if (pipelineJob.status && pipelineJob.status == 'failed') {
+    launchNotification({
+      url: pipelineJob.url,
+      title: pipelineJob.name,
+      message: 'Job failed to complete.'
+    });
+  }
 }
